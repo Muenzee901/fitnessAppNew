@@ -1,0 +1,32 @@
+﻿using System.Text.Json;
+@model Trainingsplan
+
+
+<form method="post">
+    <input asp-for="TrainingsplanId" hidden>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Bearbeite @Model.Name</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class"text-danger"></span>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Speichern</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Trainingsplan" asp-action="Index" class="btn btn-danger form-control">Zurück</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}

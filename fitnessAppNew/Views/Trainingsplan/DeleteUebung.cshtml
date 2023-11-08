@@ -1,0 +1,41 @@
+﻿@model GeplanteUebung
+
+<form method="post">
+    <input asp-for="GeplanteUebungId" />
+    <input asp-for="TrainingsplanId" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Lösche diese Übung</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="UebungId" for="UebungSelect" class="form-label mt-4"></label>
+            <select asp-for="UebungId" disabled class="form-select" id="UebungSelect">
+                <option>@if (Model.Uebung != null)
+                    {
+                        @Model.Uebung.Name
+                    }
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="AnzahlSaetze"></label>
+            <input asp-for="AnzahlSaetze" disabled class="form-control" />
+            <span asp-validation-for="AnzahlSaetze" class"text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Löschen</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Trainingsplan" asp-action="EditUebungen" asp-route-id="@Model.TrainingsplanId" class="btn btn-secondary form-control">Zurück</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}

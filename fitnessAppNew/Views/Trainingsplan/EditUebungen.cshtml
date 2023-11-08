@@ -1,0 +1,58 @@
+﻿@model Trainingsplan
+
+
+<div class"container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Bearbeite</h2>
+        </div>
+        <div class="col-6 text-end pb-3">
+            <a asp-controller="Trainingsplan" asp-action="AddUebung" asp-route-tpid="@Model.TrainingsplanId" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Neuer Übung
+            </a>
+        </div>
+    </div>
+</div>
+
+@*Big TODO: Mag er wohl nicht, wenn man da mehrere Sachen drunter hat*@
+<table class="table table-bordered table-striped table-secondary">
+    <thead>
+        <tr>
+            <th>
+                Übung
+            </th>
+            <th>
+                Sätze
+            </th>
+            <th>
+                Bearbeiten/Löschen
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.UebungsListe)
+        {
+            <tr>
+                <td>
+                    @if (@obj.Uebung != null)
+                    {
+                        @obj.Uebung.Name
+                    }
+                </td>
+                <td>
+                    @obj.AnzahlSaetze
+                </td>
+                <td>
+                    <a asp-controller="Trainingsplan" asp-action="EditUebung" asp-route-id="@obj.GeplanteUebungId" class="btn btn-primary form-control">Bearbeiten</a>
+                    <a asp-controller="Trainingsplan" asp-action="DeleteUebung" asp-route-id="@obj.GeplanteUebungId" class="btn btn-danger form-control">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-6 col-md-3">
+        <a asp-controller="Trainingsplan" asp-action="Index" class="btn btn-secondary form-control">Zurück</a>
+    </div>
+</div>

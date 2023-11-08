@@ -1,0 +1,54 @@
+﻿@model Trainingsplan
+
+<form method="post">
+    <input asp-for="TrainingsplanId" hidden>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Lösche diesen Trainingsplan</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name" disabled></label>
+            <input asp-for="Name" type="text" disabled class="form-control" />
+            <span asp-validation-for="Name" disabled class"text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Löschen</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Trainingsplan" asp-action="Index" class="btn btn-secondary form-control">Zurück</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@*Big TODO: Mag er wohl nicht, wenn man da mehrere Sachen drunter hat*@
+<table class="table table-bordered table-striped table-secondary">
+    <thead>
+        <tr>
+            <th>
+                Übung
+            </th>
+            <th>
+                Sätze
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.UebungsListe)
+        {
+            <tr>
+                <td>
+                    @if (@obj.Uebung != null)
+                    {
+                        @obj.Uebung.Name
+                    }
+                </td>
+                <td>
+                    @obj.AnzahlSaetze
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

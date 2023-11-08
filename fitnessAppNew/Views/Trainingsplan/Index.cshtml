@@ -1,0 +1,50 @@
+﻿@model List<Trainingsplan>
+
+<div class"container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Trainingspläne</h2>
+        </div>
+        <div class="col-6 text-end pb-3">
+            <a asp-controller="Trainingsplan" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Neuer Trainingsplan
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-secondary">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Bearbeiten
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Trainingsplan" asp-action="Rename" asp-route-id="@obj.TrainingsplanId" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Umbenennen
+                        </a>
+                        <a asp-controller="Trainingsplan" asp-action="EditUebungen" asp-route-id="@obj.TrainingsplanId" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Übungen hinzufügen
+                        </a>
+                        <a asp-controller="Trainingsplan" asp-action="Delete" asp-route-id="@obj.TrainingsplanId" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash-fill"></i> Löschen
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
